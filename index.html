@@ -199,6 +199,33 @@ select {
 .btn-danger, .btn-info, .btn-cek { border: 1px solid transparent; border-radius: 10px; padding: 0 12px; min-height: 38px; font-size: 13px; }
 .btn-cek { background: rgba(var(--accent-rgb), .12); color: var(--accent-2); border-color: rgba(var(--accent-rgb), .4); }
 .btn-info { background: rgba(56,189,248,.12); color: #7dd3fc; border-color: rgba(125,211,252,.4); }
+/* Tombol Tes Printer: warna solid kontras tinggi agar mudah terbaca di semua tema */
+html body .btn-tes { font-family: inherit; font-weight: 800; cursor: pointer; border: 2px solid #ffffff !important; border-radius: 10px; min-height: 40px; padding: 8px 14px; font-size: 13px; background: #15803d !important; color: #ffffff !important; -webkit-text-fill-color: #ffffff; text-shadow: none; box-shadow: 0 2px 6px rgba(0,0,0,.35); width: auto; margin: 0; }
+html body .btn-tes:hover { filter: brightness(1.15); }
+html body .btn-tes:active { transform: translateY(1px); }
+html body .btn-tes.btn-scan { width: 100%; margin: 8px 0 0; min-height: 44px; font-size: 14px; }
+html body .ct-arrows { display: flex; gap: 8px; margin: 8px 0 4px; }
+html body .ct-arrows .btn-tes { flex: 1; width: auto; min-height: 48px; font-size: 24px; line-height: 1; padding: 4px 0; }
+#ctPrev { font-family: 'Courier New', Courier, monospace; font-size: 12px; line-height: 1.3; background: #fff; color: #000; padding: 10px; border-radius: 10px; white-space: pre; overflow-x: auto; margin: 6px 0 4px; max-width: 100%; box-sizing: border-box; min-height: 40px; }
+#catatanArea { display: none; }
+@media print {
+  body.cetak-catatan .container, body.cetak-catatan .m2, body.cetak-catatan #latar, body.cetak-catatan #btnResetBubble, body.cetak-catatan #lockScreen { display: none !important; }
+  body.cetak-catatan #catatanArea { display: block !important; visibility: visible; position: absolute; left: 0; top: 0; width: 100%; background: #fff; color: #000; }
+  body.cetak-catatan #catatanArea * { visibility: visible; }
+  body.cetak-catatan .ct-pg { page-break-after: always; break-after: page; }
+  html body #catatanArea, html body #catatanArea * { color: #000 !important; -webkit-text-fill-color: #000 !important; text-shadow: none !important; opacity: 1 !important; background-image: none !important; }
+}
+.lbl img.bc { width: 100%; height: 46px; margin: 4px auto 0; image-rendering: pixelated; }
+#scanModal .m2-box, #scanDlg .m2-box { max-width: 480px; }
+#scVideo { display: block; width: 100%; max-height: 52vh; background: #000; border-radius: 12px; object-fit: cover; }
+#scStatus { margin: 8px 0; font-size: 13px; }
+.sc-row { display: flex; gap: 8px; margin-top: 8px; }
+.sc-row input { flex: 1; min-width: 0; }
+.sd-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 8px; }
+.sd-grid input { width: 100%; box-sizing: border-box; }
+#scanDlg .sd-info { font-size: 12px; opacity: .8; margin: 2px 0 8px; }
+#scanDlg .sd-act { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+#scanDlg .sd-act button { flex: 1; min-width: 120px; }
 .btn-danger { background: rgba(248,113,113,.12); color: #fca5a5; border-color: rgba(252,165,165,.4); }
 .btn-hapus-semua { flex: 0 0 auto; min-height: 46px; padding: 0 20px; white-space: nowrap; }
 #editBanner button { margin-left: 8px; }
@@ -2211,6 +2238,7 @@ html body #modalCekNota .m-logo {
         <button class="btn-tab" onclick="switchTab('tabRiwayat', event)"><span class="ic"><svg class="ti" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></svg></span><span>Riwayat</span></button>
         <button class="btn-tab" onclick="switchTab('tabPiutang', event)"><span class="ic"><svg class="ti" viewBox="0 0 24 24" aria-hidden="true"><rect width="16" height="20" x="4" y="2" rx="2"/><path d="M2 6h4M2 10h4M2 14h4M2 18h4"/><path d="M9.5 8h5M9.5 12H16M9.5 16H14"/></svg></span><span>Piutang</span></button>
         <button class="btn-tab" onclick="switchTab('tabMaster', event)"><span class="ic"><svg class="ti" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"/><path d="M12 22V12"/><path d="m3.3 7 7.703 4.734a2 2 0 0 0 1.994 0L20.7 7"/><path d="m7.5 4.27 9 5.15"/></svg></span><span>Barang</span></button>
+        <button class="btn-tab" onclick="switchTab('tabCatatan', event)"><span class="ic"><svg class="ti" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5z"/><path d="M14 2v6h6"/><path d="M16 13H8"/><path d="M16 17H8"/></svg></span><span>Catatan</span></button>
         <button class="btn-tab" onclick="switchTab('tabPengaturan', event)"><span class="ic"><svg class="ti" viewBox="0 0 24 24" aria-hidden="true"><path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7"/><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4"/><path d="M2 7h20"/><path d="M22 7v3a2 2 0 0 1-2 2 2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 16 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 12 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 8 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 4 12a2 2 0 0 1-2-2V7"/></svg></span><span>Toko</span></button>
         <button class="btn-tab" onclick="switchTab('tabLaporan', event)"><span class="ic"><svg class="ti" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 7h6v6"/><path d="m22 7-8.5 8.5-5-5L2 17"/></svg></span><span>Laporan</span></button>
         <button class="btn-tab" onclick="switchTab('tabKalkulator', event)"><span class="ic"><svg class="ti" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8"/><path d="M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 19h.01M12 19h.01M16 19h.01"/></svg></span><span>Kalkulator</span></button>
@@ -2267,7 +2295,8 @@ html body #modalCekNota .m-logo {
         <h4>Pilih cepat barang</h4>
         <p class="hint">Ketuk barang untuk mengisi nama dan harga otomatis. Geser ke samping untuk melihat barang lainnya.</p>
         <div class="form-group">
-            <input type="text" id="searchQuickBarang" placeholder="🔍 Cari nama barang cepat..." oninput="dbQuick()">
+            <input type="text" id="searchQuickBarang" placeholder="🔍 Cari nama / scan barcode barang..." oninput="dbQuick()">
+            <button type="button" class="btn-tes btn-scan" onclick="scanNota()">📷 Scan Barcode</button>
         </div>
         <div class="quick-list-container" id="quickList"></div>
         </section>
@@ -2396,7 +2425,8 @@ html body #modalCekNota .m-logo {
                 <div class="form-group mb-half">
                     <label for="masterKodeBarang">Kode / Barcode <em>(opsional)</em></label>
                     <input type="text" id="masterKodeBarang" placeholder="Contoh: 8991234567890">
-                    <small class="mb-hint">Dipakai untuk label QR. Kosong = dibuat otomatis.</small>
+                    <button type="button" class="btn-tes btn-scan" onclick="scanMaster()">📷 Scan Barcode</button>
+                    <small class="mb-hint">Dipakai untuk label QR &amp; barcode. Scan dengan kamera/scanner, atau kosongkan agar dibuat otomatis.</small>
                 </div>
                 <div class="form-group mb-half mb-toggle"><button type="button" class="rp-mode" aria-pressed="true" onclick="setAuto000(!auto000)"><span class="rp-dot"></span><span class="rp-mode-txt"></span></button></div>
                 <div class="form-group">
@@ -2646,6 +2676,25 @@ html body #modalCekNota .m-logo {
         </div>
     </div>
     <!-- TAB 7: ESTIMASI MATERIAL -->
+    <div id="tabCatatan" class="tab-content">
+        <h4>Cetak Catatan</h4>
+        <p class="hint">Tulis atau ubah teks, lalu cetak ke printer thermal. Isi tersimpan otomatis di perangkat ini. Huruf dengan aksen/simbol khusus tidak ikut tercetak di printer Bluetooth.</p>
+        <section class="card">
+            <div class="form-group"><label for="ctJudul">Judul (opsional)</label><input type="text" id="ctJudul" maxlength="60" autocomplete="off" placeholder="Contoh: Daftar Pesanan"></div>
+            <div class="form-group"><label for="ctIsi">Isi catatan</label><textarea id="ctIsi" rows="8" placeholder="Ketik catatan di sini..."></textarea>
+                <div class="ct-arrows" role="group" aria-label="Sisipkan panah"><button type="button" class="btn-tes" data-p="↑" aria-label="Panah atas">↑</button><button type="button" class="btn-tes" data-p="↓" aria-label="Panah bawah">↓</button><button type="button" class="btn-tes" data-p="←" aria-label="Panah kiri">←</button><button type="button" class="btn-tes" data-p="→" aria-label="Panah kanan">→</button></div>
+                <small class="hint">Ketuk panah untuk menyisipkannya di posisi kursor (penunjuk lokasi barang). Di printer Bluetooth panah dicetak sebagai gambar panah (selebar 2 karakter; ↑ ↓ dicetak lebih tinggi).</small></div>
+            <div class="form-group"><label for="ctRata">Rata teks</label><select id="ctRata"><option value="0">Kiri</option><option value="1">Tengah</option></select></div>
+            <label class="lb-opt"><input type="checkbox" id="ctTebal">Huruf tebal</label>
+            <label class="lb-opt"><input type="checkbox" id="ctBesar">Huruf besar (2x)</label>
+            <label class="lb-opt"><input type="checkbox" id="ctLogo">Cetak logo / nama toko di atas</label>
+            <label class="lb-opt"><input type="checkbox" id="ctTgl">Cetak tanggal &amp; jam di bawah</label>
+            <div class="form-group" style="margin-top:8px;"><label for="ctJml">Jumlah salinan</label><input type="number" id="ctJml" min="1" max="10" value="1" inputmode="numeric"></div>
+            <label>Pratinjau</label>
+            <div id="ctPrev" aria-live="polite"></div>
+            <div class="sd-act" style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;"><button type="button" class="btn-tes" id="ctCetak" style="flex:1;min-width:140px;">🖨 Cetak Catatan</button><button type="button" class="btn-cek" id="ctHapus" style="flex:1;min-width:120px;">Hapus isi</button></div>
+        </section>
+    </div>
     <div id="tabEstimasi" class="tab-content">
         <h4>Estimasi Kebutuhan Material</h4>
         <p class="hint">Hitung perkiraan bahan dari luas / volume pekerjaan, lalu masukkan ke nota. Angka adalah perkiraan umum (mirip SNI) — selalu sisakan cadangan.</p>
@@ -2708,12 +2757,13 @@ html body #modalCekNota .m-logo {
 </div>
 <div id="labelModal" class="m2"><div class="m2-box">
     <button type="button" class="m2-x" onclick="tutupLabel()" aria-label="Tutup">✕</button>
-    <h4>Label Harga &amp; QR Barang</h4>
-    <p class="hint">Centang barang, atur jumlah label, lalu cetak ke printer thermal 58 mm. QR berisi kode barang.</p>
+    <h4>Label Harga, QR &amp; Barcode</h4>
+    <p class="hint">Centang barang, atur jumlah label, lalu cetak ke printer thermal 58 mm. QR dan barcode berisi kode barang.</p>
     <input type="text" id="lbCari" placeholder="🔍 Cari barang..." oninput="lbRender()">
     <div class="sf-row" style="margin-top:10px;"><button type="button" onclick="lbSemua(true)">Pilih semua</button><button type="button" onclick="lbSemua(false)">Kosongkan</button></div>
     <div id="lbList" class="lb-list"></div>
     <div style="margin:12px 0 4px;">
+        <label class="lb-opt"><input type="checkbox" id="lbBc" checked onchange="lbPrev()">Sertakan barcode (Code 128) di label</label>
         <label class="lb-opt"><input type="checkbox" id="lbQr" checked onchange="lbPrev()">Sertakan QR di label</label>
         <label class="lb-opt"><input type="checkbox" id="lbPage" checked>Satu label per halaman (printer label / potong otomatis)</label>
     </div>
@@ -2723,6 +2773,7 @@ html body #modalCekNota .m-logo {
     <button type="button" class="btn-copy" onclick="unduhQr()">⬇ Unduh QR (PNG)</button>
 </div></div>
 <div id="labelArea"></div>
+<div id="catatanArea"></div>
 <aside id="notaFloat" aria-label="Daftar belanja dan pembayaran">
     <button type="button" class="nf-head" id="nfToggle" aria-expanded="true" aria-controls="nfBody" onclick="nfToggle()">
         <span class="nf-ttl">🧾 Belanja · <b id="nfCount">0</b> barang</span>
@@ -4364,60 +4415,27 @@ html body #modalCekNota .m-logo {
         });
     }
 
-    /* ===== Cetak Alamat & No. HP Toko =====
-       Mode samping untuk printer thermal 58 mm: tulisan digambar melebar (landscape) lalu diputar 90°,
-       sehingga hurufnya memanjang searah gulungan kertas dan bisa jauh lebih besar. Hasilnya satu gambar,
-       jadi tidak pecah ke banyak halaman. Putar kertas ke kiri (berlawanan jarum jam) untuk membacanya. */
-    function cetakAlamatToko() {
-        let toko = (document.getElementById('namaToko').value || '').trim();
+    /* ===== Tes Printer =====
+       Mencetak teks alamat lengkap toko (apa adanya) untuk mengecek printer thermal 58 mm. */
+    function tesPrinter() {
+        /* sama persis dengan tombol Tes Printer di menu Printer (Bluetooth) */
+        let bt = document.getElementById('btTes');
+        if (bt) { bt.click(); return; }
         let alamat = (document.getElementById('alamatToko').value || '').trim();
         let telp = (document.getElementById('telpToko').value || '').trim();
-        if (!alamat && !telp) { alert('Alamat dan nomor HP toko belum diisi di tab Toko.'); return; }
-        const H = 384, W = 1100, P = 16, FONT = 'Arial, Helvetica, sans-serif';
-        const S = 0.6;   // skala hasil cetak: makin kecil angkanya, makin kecil & pendek hasil cetaknya
-        let c = document.createElement('canvas'); c.width = Math.round(W * S); c.height = Math.round(H * S);
-        let ctx = c.getContext('2d');
-        ctx.scale(S, S);
-        ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, W, H);
-        ctx.fillStyle = '#000'; ctx.textAlign = 'center'; ctx.textBaseline = 'top';
-        let y = 8;
-        let logo = document.getElementById('pLogoToko');
-        if (logo && logo.complete && logo.naturalWidth) {
-            let lh = 96, lw = lh * (logo.naturalWidth / logo.naturalHeight);
-            if (lw > W - 2 * P) { lw = W - 2 * P; lh = lw * (logo.naturalHeight / logo.naturalWidth); }
-            ctx.drawImage(logo, (W - lw) / 2, y, lw, lh); y += lh + 8;
-        } else if (toko) {
-            ctx.font = 'bold 54px ' + FONT; ctx.fillText(toko, W / 2, y); y += 64;
-        }
-        if (alamat) {
-            let n = 66, baris;
-            for (; n > 26; n -= 2) { baris = wrapPx(ctx, alamat, 'bold ' + n + 'px ' + FONT, W - 2 * P); if (baris.length <= 2 && baris.length * n * 1.12 <= 118) break; }
-            baris = wrapPx(ctx, alamat, 'bold ' + n + 'px ' + FONT, W - 2 * P);
-            ctx.font = 'bold ' + n + 'px ' + FONT;
-            baris.forEach(b => { ctx.fillText(b, W / 2, y); y += n * 1.12; });
-            y += 6;
-        }
-        if (telp) {
-            ctx.setLineDash([6, 6]); ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(P, y); ctx.lineTo(W - P, y); ctx.stroke(); ctx.setLineDash([]);
-            y += 8;
-            ctx.font = 'bold 26px ' + FONT; ctx.fillText('TELP / WHATSAPP', W / 2, y); y += 32;
-            let n = Math.min(150, H - y - 6);
-            while (n > 30) { ctx.font = '800 ' + n + 'px ' + FONT; if (ctx.measureText(telp).width <= W - 2 * P) break; n -= 2; }
-            ctx.font = '800 ' + n + 'px ' + FONT; ctx.fillText(telp, W / 2, y);
-        }
-        // putar 90° searah jarum jam -> lebar gambar = 384 titik (lebar kertas thermal 58 mm)
-        let r = document.createElement('canvas'); r.width = H; r.height = c.width;
-        let rc = r.getContext('2d');
-        rc.fillStyle = '#fff'; rc.fillRect(0, 0, H, c.width);
-        rc.translate((H - c.height) / 2 + c.height, 0); rc.rotate(Math.PI / 2); rc.drawImage(c, 0, 0);
-        let uri = r.toDataURL('image/png');
-        let html = `<!DOCTYPE html><html lang="id"><head><meta charset="utf-8"><title>Alamat ${esc(toko)}</title>
+        let web = (document.getElementById('settingWebsite') ? document.getElementById('settingWebsite').value : '').trim();
+        if (!alamat && !telp && !web) { alert('Alamat, nomor HP, dan website toko belum diisi di tab Toko.'); return; }
+        let isi = [];
+        if (alamat) isi.push(esc(alamat));
+        if (telp) isi.push('Telp/WA: ' + esc(telp));
+        if (web) isi.push(esc(web));
+        let html = `<!DOCTYPE html><html lang="id"><head><meta charset="utf-8"><title>Tes Printer</title>
 <style>
 @page { margin: 0; }
 html, body { margin: 0; padding: 0; background: #fff; }
-img { display: block; width: 100%; height: auto; }
+body { width: 100%; padding: 4mm 2mm; box-sizing: border-box; font: bold 14px/1.3 Arial, Helvetica, sans-serif; color: #000; text-align: center; word-wrap: break-word; }
 .ekor { height: 8mm; }
-</style></head><body><img alt="Alamat toko" src="${uri}"><div class="ekor"></div></body></html>`;
+</style></head><body>${isi.join('<br>')}<div class="ekor"></div></body></html>`;
         let w = window.open('', '_blank');
         if (w) {
             w.document.open(); w.document.write(html); w.document.close();
@@ -4441,7 +4459,7 @@ img { display: block; width: 100%; height: auto; }
             setTimeout(() => { try { win.focus(); win.print(); } catch (e) {} }, 200);
         })();
     }
-    window.cetakAlamatToko = cetakAlamatToko;
+    window.tesPrinter = tesPrinter;
 
     let editMasterIdx = null;
     function renderTabelMaster() {
@@ -4459,7 +4477,7 @@ img { display: block; width: 100%; height: auto; }
                     <td data-label="Harga" class="c-angka">Rp ${item.harga.toLocaleString('id-ID')}${hgBadge(item, true) ? '<div>' + hgBadge(item, true) + '</div>' : ''}</td>
                     <td data-label="Modal" class="c-angka">${item.modal != null ? 'Rp ' + item.modal.toLocaleString('id-ID') : '-'}</td>
                     <td data-label="Stok" class="c-angka"><span class="stok-chip ${!hasStok ? 'none' : (item.stok <= 0 ? 'out' : (rendah ? 'low' : 'ok'))}">${hasStok ? (item.stok <= 0 ? 'Habis' : item.stok + (rendah ? ' · menipis' : '')) : 'Tak dilacak'}</span></td>
-                    <td class="c-aksi"><div class="aksi"><button class="btn-info" onclick="bukaLabel(${i})">🏷 QR / Label</button><button class="btn-cek" onclick="editMaster(${i})">✏️ Edit</button><button class="btn-danger" onclick="hapusMasterBarang(${i})">Hapus</button></div></td>
+                    <td class="c-aksi"><div class="aksi"><button class="btn-info" onclick="bukaLabel(${i})">🏷 Label / Barcode</button><button class="btn-cek" onclick="editMaster(${i})">✏️ Edit</button><button class="btn-danger" onclick="hapusMasterBarang(${i})">Hapus</button></div></td>
                 </tr>`);
         });
         var jml = document.getElementById('mbJumlah');
@@ -6662,6 +6680,8 @@ var QRCode=req("index"),EC=req("QRErrorCorrectLevel");return {QRCode:QRCode,EC:E
     };
     function lbHtml(it, withQr, pg) {
         var h = '<div class="lbl' + (pg ? ' pg' : '') + '"><div class="ln">' + esc(it.nama) + '</div><div class="lp">' + rp(it.harga) + '</div>';
+        var bc = $('lbBc') && $('lbBc').checked;
+        if (bc) { ensureKode(it); h += '<img class="bc" alt="" src="' + barcodeUrl(it.kode) + '">'; if (!withQr) h += '<div class="lk">' + esc(it.kode) + '</div>'; }
         if (withQr) { ensureKode(it); h += '<img alt="" src="' + qrUrl(it.kode, 6) + '"><div class="lk">' + esc(it.kode) + '</div>'; }
         return h + '</div>';
     }
@@ -6698,6 +6718,231 @@ var QRCode=req("index"),EC=req("QRErrorCorrectLevel");return {QRCode:QRCode,EC:E
         save('tb_master_barang', masterBarang); renderTabelMaster();
         toast(ks.length + ' file QR diunduh');
     };
+
+
+    /* =====================================================
+       4b. BARCODE Code 128, SCANNER KAMERA, SCAN DI NOTA & BARANG
+       ===================================================== */
+    var C128 = ['212222','222122','222221','121223','121322','131222','122213','122312','132212','221213','221312','231212','112232','122132','122231','113222','123122','123221','223211','221132','221231','213212','223112','312131','311222','321122','321221','312212','322112','322211','212123','212321','232121','111323','131123','131321','112313','132113','132311','211313','231113','231311','112133','112331','132131','113123','113321','133121','313121','211331','231131','213113','213311','213131','311123','311321','331121','312113','312311','332111','314111','221411','431111','111224','111422','121124','121421','141122','141221','112214','112412','122114','122411','142112','142211','241211','221114','413111','241112','134111','111242','121142','121241','114212','124112','124211','411212','421112','421211','212141','214121','412121','111143','111341','131141','114113','114311','411113','411311','113141','114131','311141','411131','211412','211214','211232','2331112'];
+    function barcodeCanvas(text) {
+        text = String(text).replace(/[^\x20-\x7e]/g, '');
+        var vals = [104], sum = 104, i;
+        for (i = 0; i < text.length; i++) { var v = text.charCodeAt(i) - 32; vals.push(v); sum += v * (i + 1); }
+        vals.push(sum % 103); vals.push(106);
+        var pat = vals.map(function (v) { return C128[v]; }).join(''), mods = 0;
+        for (i = 0; i < pat.length; i++) mods += +pat.charAt(i);
+        var mw = Math.max(1, Math.min(3, Math.floor(370 / mods))), c = document.createElement('canvas');
+        c.width = mods * mw; c.height = 60;
+        var g = c.getContext('2d'); g.fillStyle = '#fff'; g.fillRect(0, 0, c.width, c.height); g.fillStyle = '#000';
+        var x = 0;
+        for (i = 0; i < pat.length; i++) { var w = (+pat.charAt(i)) * mw; if (i % 2 === 0) g.fillRect(x, 0, w, c.height); x += w; }
+        return c;
+    }
+    var bcCache = {};
+    function barcodeUrl(text) { return bcCache[text] || (bcCache[text] = barcodeCanvas(text).toDataURL('image/png')); }
+
+    /* ---- Scanner kamera (BarcodeDetector) + isi manual / scanner USB-Bluetooth ---- */
+    var scStream = null, scTimer = null, scCb = null, scDone = false;
+    function scBuat() {
+        if ($('scanModal')) return;
+        var d = document.createElement('div'); d.id = 'scanModal'; d.className = 'm2';
+        d.innerHTML = '<div class="m2-box"><button type="button" class="m2-x" id="scX" aria-label="Tutup">✕</button><h4>📷 Scan Barcode</h4>' +
+            '<video id="scVideo" playsinline muted></video><div id="scStatus" class="hint"></div>' +
+            '<div class="sc-row"><input type="text" id="scInput" placeholder="Atau ketik / tembak scanner di sini" autocomplete="off" autocapitalize="none"><button type="button" class="btn-tes" id="scOk">Pakai</button></div></div>';
+        document.body.appendChild(d);
+        $('scX').onclick = scTutup;
+        $('scOk').onclick = function () { scHasil($('scInput').value); };
+        $('scInput').addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); scHasil(this.value); } });
+    }
+    function scTutup() {
+        if (scTimer) { clearInterval(scTimer); scTimer = null; }
+        if (scStream) { scStream.getTracks().forEach(function (t) { t.stop(); }); scStream = null; }
+        var v = $('scVideo'); if (v) v.srcObject = null;
+        if ($('scanModal')) $('scanModal').classList.remove('open');
+    }
+    function scHasil(t) {
+        t = String(t || '').trim(); if (!t || scDone) return;
+        scDone = true; var cb = scCb; scCb = null; scTutup();
+        try { if (navigator.vibrate) navigator.vibrate(60); } catch (e) {}
+        if (cb) cb(t);
+    }
+    window.bukaScanner = function (cb) {
+        scBuat(); scCb = cb; scDone = false; $('scInput').value = '';
+        var st = $('scStatus'), v = $('scVideo'); st.textContent = 'Membuka kamera...';
+        $('scanModal').classList.add('open');
+        if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) { st.textContent = 'Kamera tidak tersedia (butuh HTTPS). Ketik kode atau pakai scanner barcode.'; $('scInput').focus(); return; }
+        if (!('BarcodeDetector' in window)) { st.textContent = 'Browser ini belum mendukung scan kamera (gunakan Chrome Android). Ketik kode atau pakai scanner barcode USB/Bluetooth.'; $('scInput').focus(); return; }
+        var det; try { det = new BarcodeDetector(); } catch (e) { st.textContent = 'Scanner tidak bisa dijalankan. Ketik kode manual.'; $('scInput').focus(); return; }
+        navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: 'environment' } }, audio: false }).then(function (stream) {
+            if (!$('scanModal').classList.contains('open')) { stream.getTracks().forEach(function (t) { t.stop(); }); return; }
+            scStream = stream; v.srcObject = stream; v.setAttribute('playsinline', ''); v.muted = true;
+            var p = v.play(); if (p && p.catch) p.catch(function () {});
+            st.textContent = 'Arahkan kamera ke barcode...';
+            scTimer = setInterval(function () {
+                if (v.readyState < 2) return;
+                det.detect(v).then(function (r) { if (r && r.length) scHasil(r[0].rawValue); }).catch(function () {});
+            }, 250);
+        }).catch(function (e) { st.textContent = 'Kamera tidak bisa dibuka (' + ((e && e.name) || 'ditolak') + '). Izinkan akses kamera, atau ketik kode manual.'; $('scInput').focus(); });
+    };
+
+    function keTab(id) {
+        var b = document.querySelector('.btn-tab[onclick*="' + id + '"]');
+        if (b) b.click(); else if (typeof switchTab === 'function') switchTab(id);
+    }
+
+    /* ---- Scan di Buat Nota: edit qty & harga sebelum masuk nota ---- */
+    var SD = { it: null };
+    function sdBuat() {
+        if ($('scanDlg')) return;
+        var d = document.createElement('div'); d.id = 'scanDlg'; d.className = 'm2';
+        d.innerHTML = '<div class="m2-box"><button type="button" class="m2-x" id="sdX" aria-label="Tutup">✕</button><h4 id="sdNama"></h4>' +
+            '<div class="sd-info" id="sdInfo"></div>' +
+            '<div class="sd-grid"><div><label for="sdQty">Qty</label><input type="text" id="sdQty" inputmode="decimal" autocomplete="off"></div>' +
+            '<div><label for="sdHarga">Harga satuan (Rp)</label><input type="text" id="sdHarga" inputmode="numeric" autocomplete="off"></div></div>' +
+            '<label class="lb-opt" style="margin-top:10px;"><input type="checkbox" id="sdSimpan">Simpan harga baru ke data barang</label>' +
+            '<div class="sd-act"><button type="button" class="btn-tes" id="sdOk">Tambah ke nota</button><button type="button" class="btn-tes" id="sdLagi">Tambah &amp; scan lagi</button><button type="button" class="btn-cek" id="sdBatal">Batal</button></div></div>';
+        document.body.appendChild(d);
+        $('sdX').onclick = $('sdBatal').onclick = function () { $('scanDlg').classList.remove('open'); };
+        $('sdOk').onclick = function () { sdTambah(false); };
+        $('sdLagi').onclick = function () { sdTambah(true); };
+        $('sdHarga').addEventListener('input', function () { var n = this.value.replace(/\D/g, ''); this.value = n ? Number(n).toLocaleString('id-ID') : ''; });
+        d.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); sdTambah(false); } });
+    }
+    window.dialogScan = function (it, kode) {
+        sdBuat(); SD.it = it;
+        $('sdNama').textContent = it.nama;
+        $('sdInfo').textContent = 'Barcode: ' + (kode || it.kode || '-') + (it.stok != null ? ' · Stok: ' + it.stok : '');
+        $('sdQty').value = '1'; $('sdHarga').value = Number(it.harga).toLocaleString('id-ID'); $('sdSimpan').checked = false;
+        $('scanDlg').classList.add('open'); setTimeout(function () { $('sdQty').focus(); $('sdQty').select(); }, 80);
+    };
+    function sdTambah(lagi) {
+        var it = SD.it; if (!it) return;
+        var qty = parseFloat(String($('sdQty').value).replace(',', '.')), h = parseInt($('sdHarga').value.replace(/\D/g, ''), 10);
+        if (!(qty > 0)) { toast('Qty tidak valid'); return; }
+        if (!(h > 0)) { toast('Harga tidak valid'); return; }
+        var salin = Object.assign({}, it, { harga: h });
+        if (!tambahDariMaster(salin, qty, it.satuan || '')) return;
+        if ($('sdSimpan').checked && h !== Number(it.harga)) {
+            it.hargaLama = Number(it.harga); it.hargaUbah = Date.now(); it.harga = h;
+            save('tb_master_barang', masterBarang); renderTabelMaster(); renderQuickList();
+        }
+        toast('+ ' + it.nama + ' ×' + qty);
+        $('scanDlg').classList.remove('open'); SD.it = null;
+        if (lagi) setTimeout(window.scanNota, 150);
+    }
+    window.scanNota = function () {
+        window.bukaScanner(function (k) {
+            var it = cariKode(k);
+            if (it) { window.dialogScan(it, k); return; }
+            if (confirm('Barcode "' + k + '" belum terdaftar.\nDaftarkan sebagai barang baru di menu Barang?')) {
+                keTab('tabMaster');
+                if (typeof batalEditMaster === 'function') batalEditMaster();
+                $('masterKodeBarang').value = k;
+                setTimeout(function () { $('masterNamaBarang').focus(); }, 150);
+                toast('Barcode terisi. Lengkapi nama, harga & stok.');
+            }
+        });
+    };
+
+    /* ---- Scan di menu Barang: input barang baru / edit qty (stok) & harga ---- */
+    window.scanMaster = function () {
+        window.bukaScanner(function (k) {
+            var it = cariKode(k), idx = it ? masterBarang.indexOf(it) : -1;
+            if (idx >= 0) { editMaster(idx); toast('Barang ditemukan. Ubah stok/harga lalu simpan.'); return; }
+            $('masterKodeBarang').value = k;
+            setTimeout(function () { $('masterNamaBarang').focus(); }, 100);
+            toast('Barcode terisi. Lengkapi nama, harga & stok.');
+        });
+    };
+
+
+    /* =====================================================
+       4c. MENU CATATAN: teks bebas yang bisa diedit lalu dicetak
+       ===================================================== */
+    (function () {
+        var KEY = 'tb_catatan_v1', ids = ['ctJudul', 'ctIsi', 'ctRata', 'ctTebal', 'ctBesar', 'ctLogo', 'ctTgl', 'ctJml'];
+        function ambil() {
+            return { judul: $('ctJudul').value.trim(), isi: $('ctIsi').value, tengah: $('ctRata').value === '1', tebal: $('ctTebal').checked,
+                besar: $('ctBesar').checked, logo: $('ctLogo').checked, tgl: $('ctTgl').checked, jml: Math.max(1, Math.min(10, parseInt($('ctJml').value, 10) || 1)) };
+        }
+        function peta(t) { return String(t).replace(/[↑]/g, '^').replace(/[↓]/g, 'v').replace(/[←]/g, '<--').replace(/[→]/g, '-->'); }
+        function sisip(t) {
+            var e = $('ctIsi'), v = e.value, a = e.selectionStart, b = e.selectionEnd;
+            if (a == null || b == null) { a = b = v.length; }
+            e.value = v.slice(0, a) + t + v.slice(b); e.selectionStart = e.selectionEnd = a + t.length;
+            e.focus(); e.dispatchEvent(new Event('input'));
+        }
+        function simpanCt() { try { localStorage.setItem(KEY, JSON.stringify(ambil())); } catch (e) {} }
+        function muat() {
+            var d = null; try { d = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (e) {}
+            if (!d) return;
+            $('ctJudul').value = d.judul || ''; $('ctIsi').value = d.isi || ''; $('ctRata').value = d.tengah ? '1' : '0';
+            $('ctTebal').checked = !!d.tebal; $('ctBesar').checked = !!d.besar; $('ctLogo').checked = !!d.logo; $('ctTgl').checked = !!d.tgl; $('ctJml').value = d.jml || 1;
+        }
+        function bungkus(t, w) {
+            var out = [], kata = String(t).replace(/\s+/g, ' ').trim().split(' '), cur = '';
+            kata.forEach(function (k) {
+                while (k.length > w) { if (cur) { out.push(cur); cur = ''; } out.push(k.slice(0, w)); k = k.slice(w); }
+                if (!k) return;
+                if (!cur) cur = k; else if ((cur + ' ' + k).length <= w) cur += ' ' + k; else { out.push(cur); cur = k; }
+            });
+            if (cur) out.push(cur); return out;
+        }
+        function baris(o) {
+            var w = window.btKolom ? window.btKolom() : 32, wb = o.besar ? Math.floor(w / 2) : w, L = [];
+            var tengah = function (x, ww) { return new Array(Math.max(0, Math.floor((ww - x.length) / 2)) + 1).join(' ') + x; };
+            if (o.logo) { var nm = ($('namaToko') && $('namaToko').value) || ''; if (nm) bungkus(nm, w).forEach(function (x) { L.push(tengah(x, w)); }); }
+            if (o.judul) { bungkus(o.judul, wb).forEach(function (x) { L.push(tengah(x, wb)); }); L.push(new Array(w + 1).join('-')); }
+            String(o.isi).split(/\r?\n/).forEach(function (ln) {
+                var ws = bungkus(ln, wb); if (!ws.length) ws = [''];
+                ws.forEach(function (x) { L.push(o.tengah ? tengah(x, wb) : x); });
+            });
+            if (o.tgl) { L.push(new Array(w + 1).join('-')); L.push(tengah(new Date().toLocaleString('id-ID'), w)); }
+            return L;
+        }
+        function prev() {
+            var o = ambil(), el = $('ctPrev'), w = window.btKolom ? window.btKolom() : 32;
+            el.style.width = (w * 7.3 + 22) + 'px';
+            el.style.fontWeight = o.tebal ? '700' : '400';
+            el.style.fontSize = o.besar ? '' : '';
+            el.textContent = baris(o).join('\n') || 'Pratinjau akan muncul di sini.';
+        }
+        function cetakBrowser(o) {
+            var blok = '<div class="ct-blok" style="font-family:\'Courier New\',monospace;font-size:' + (o.besar ? 20 : 12) + 'px;line-height:1.3;padding:6px 4px;text-align:' + (o.tengah ? 'center' : 'left') + ';font-weight:' + (o.tebal ? 700 : 400) + ';white-space:pre-wrap;word-break:break-word;">';
+            var h = '';
+            for (var c = 0; c < o.jml; c++) {
+                h += '<div class="' + (c < o.jml - 1 ? 'ct-pg' : '') + '" style="padding:4px;">';
+                if (o.logo && $('namaToko') && $('namaToko').value) h += '<div style="text-align:center;font-weight:700;font-size:14px;margin-bottom:4px;">' + esc($('namaToko').value) + '</div>';
+                if (o.judul) h += '<div style="text-align:center;font-weight:700;font-size:' + (o.besar ? 22 : 14) + 'px;border-bottom:1px dashed #000;padding-bottom:3px;margin-bottom:4px;">' + esc(o.judul) + '</div>';
+                h += blok + esc(o.isi) + '</div>';
+                if (o.tgl) h += '<div style="text-align:center;font-size:11px;border-top:1px dashed #000;margin-top:4px;padding-top:3px;">' + esc(new Date().toLocaleString('id-ID')) + '</div>';
+                h += '</div>';
+            }
+            $('catatanArea').innerHTML = h; document.body.classList.add('cetak-catatan');
+            var bersih = function () { document.body.classList.remove('cetak-catatan'); window.removeEventListener('afterprint', bersih); };
+            window.addEventListener('afterprint', bersih); setTimeout(bersih, 30000);
+            window.print();
+        }
+        function cetak() {
+            var o = ambil();
+            if (!o.isi.trim() && !o.judul) { toast('Tulis catatan dulu'); return; }
+            simpanCt();
+            var fb = function () { cetakBrowser(o); };
+            if (!(window.btCetakCatatan && window.btCetakCatatan(o, fb))) fb();
+        }
+        muat(); prev();
+        ids.forEach(function (id) { var e = $(id); e.addEventListener('input', function () { simpanCt(); prev(); }); e.addEventListener('change', function () { simpanCt(); prev(); }); });
+        $('ctCetak').addEventListener('click', cetak);
+        Array.prototype.forEach.call(document.querySelectorAll('.ct-arrows [data-p]'), function (b) {
+            b.addEventListener('mousedown', function (e) { e.preventDefault(); });
+            b.addEventListener('click', function () { sisip(this.getAttribute('data-p')); });
+        });
+        $('ctHapus').addEventListener('click', function () {
+            if (!$('ctIsi').value && !$('ctJudul').value) return;
+            if (confirm('Hapus judul dan isi catatan?')) { $('ctJudul').value = ''; $('ctIsi').value = ''; simpanCt(); prev(); }
+        });
+        document.querySelector('.btn-tab[onclick*="tabCatatan"]').addEventListener('click', prev);
+    })();
 
     /* =====================================================
        5. ESTIMASI KEBUTUHAN MATERIAL
@@ -7104,7 +7349,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
             '<div class="tk-row"><div class="form-group"><label>Telepon / No. HP Toko:</label><input type="tel" id="setTelpToko" inputmode="tel" maxlength="30" autocomplete="off"></div>' +
             '<div class="form-group"><label>Kasir / Operator utama:</label><input type="text" id="setKasirToko" maxlength="40" autocomplete="off"></div></div>' +
             '<div class="tk-preview" id="tkPreview" aria-label="Pratinjau header nota"></div>' +
-            '<button type="button" class="btn-info" id="btnCetakAlamatToko" title="Cetak alamat dan no. HP toko, kertas mode samping">🖨 Cetak Alamat &amp; No. HP Toko</button>' +
+            '<button type="button" class="btn-tes" id="btnTesPrinter" title="Cetak alamat, no. HP, dan website toko untuk tes printer">🖨 Tes Printer</button>' +
             '<button type="button" class="btn-cek" id="btnBukaPanduan">📖 Buka Panduan Singkat</button>';
         tab.insertBefore(box, tab.firstChild);
         Object.keys(PETA).forEach(function (k) {
@@ -7115,7 +7360,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
                 simpan(); pratinjau();
             });
         });
-        $('btnCetakAlamatToko').onclick = function () { if (window.cetakAlamatToko) window.cetakAlamatToko(); };
+        $('btnTesPrinter').onclick = function () { if (window.tesPrinter) window.tesPrinter(); };
         $('btnBukaPanduan').onclick = function () { if (window.bukaPanduan) window.bukaPanduan(); };
     }
 
@@ -7126,7 +7371,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
         var baris = fg[0].parentNode;
         var info = document.createElement('div'); info.id = 'tkInfo'; info.className = 'tk-info';
         info.innerHTML = '<div class="tk-i-txt"><b id="tkInfoNama"></b><span id="tkInfoAlamat"></span></div>' +
-            '<div class="tk-i-act"><button type="button" class="btn-cek" data-a="toko">✏️ Ubah di tab Toko</button><button type="button" class="btn-info" data-a="cetakalamat">🖨 Cetak Alamat Toko</button><button type="button" class="btn-cek" data-a="panduan">📖 Panduan</button></div>';
+            '<div class="tk-i-act"><button type="button" class="btn-cek" data-a="toko">✏️ Ubah di tab Toko</button><button type="button" class="btn-tes" data-a="tesprinter">🖨 Tes Printer</button><button type="button" class="btn-cek" data-a="panduan">📖 Panduan</button></div>';
         baris.parentNode.insertBefore(info, baris);
         fg.forEach(function (g) { g.style.display = 'none'; });
         document.querySelectorAll('#tabNota .row-flex').forEach(function (r) {
@@ -7136,7 +7381,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
         info.addEventListener('click', function (e) {
             var b = e.target.closest('button'); if (!b) return;
             if (b.dataset.a === 'toko') { bukaTab('tabPengaturan'); setTimeout(function () { var s = $('setNamaToko'); if (s) s.focus(); }, 120); }
-            else if (b.dataset.a === 'cetakalamat') { if (window.cetakAlamatToko) window.cetakAlamatToko(); }
+            else if (b.dataset.a === 'tesprinter') { if (window.tesPrinter) window.tesPrinter(); }
             else if (window.bukaPanduan) window.bukaPanduan();
         });
     }
@@ -8257,7 +8502,7 @@ function h(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (
 function without(arr, rm) { return arr.filter(function (x) { return rm.indexOf(x) < 0; }); }
 
 /* ============ KONFIGURASI PERAN — ubah di sini bila ingin menyesuaikan ============ */
-var TAB_LABEL = { tabNota: 'Buat Nota', tabRiwayat: 'Riwayat', tabPiutang: 'Piutang', tabMaster: 'Barang', tabPengaturan: 'Toko', tabLaporan: 'Laporan', tabKalkulator: 'Kalkulator', tabEstimasi: 'Estimasi', tabPersediaan: 'Persediaan', tabKatalog: 'Katalog', tabArsipNota: 'Arsip Nota', tabTamu: 'Tamu', tabLacak: 'Lacak', tabAkun: 'Akun', tabRequest: 'Request' };
+var TAB_LABEL = { tabNota: 'Buat Nota', tabRiwayat: 'Riwayat', tabPiutang: 'Piutang', tabMaster: 'Barang', tabPengaturan: 'Toko', tabLaporan: 'Laporan', tabKalkulator: 'Kalkulator', tabEstimasi: 'Estimasi', tabPersediaan: 'Persediaan', tabKatalog: 'Katalog', tabArsipNota: 'Arsip Nota', tabTamu: 'Tamu', tabLacak: 'Lacak', tabCatatan: 'Catatan', tabAkun: 'Akun', tabRequest: 'Request' };
 /* Tanpa login (tamu) hanya boleh membuka menu ini */
 var GUEST_TABS = ['tabKatalog', 'tabTamu', 'tabLacak', 'tabEstimasi', 'tabKalkulator'];
 var ACT_LABEL = {
@@ -8276,7 +8521,7 @@ var ALL_TABS = Object.keys(TAB_LABEL), ALL_ACTS = Object.keys(ACT_LABEL);
 var ROLES = {
   admin:  { label: 'Admin',  tabs: ALL_TABS, acts: ALL_ACTS, home: 'tabNota' },
   owner:  { label: 'Owner',  tabs: without(ALL_TABS, ['tabPengaturan', 'tabAkun', 'tabRequest']), acts: without(ALL_ACTS, ['riwayat.hapusSemua', 'toko.ubah', 'data.cadangan']), home: 'tabNota' },
-  kasir:  { label: 'Kasir',  tabs: ['tabNota', 'tabRiwayat', 'tabPiutang', 'tabKalkulator', 'tabEstimasi', 'tabTamu', 'tabLacak'], acts: ['nota.buat', 'riwayat.cetak', 'piutang.kelola'], home: 'tabNota' },
+  kasir:  { label: 'Kasir',  tabs: ['tabNota', 'tabRiwayat', 'tabPiutang', 'tabKalkulator', 'tabEstimasi', 'tabTamu', 'tabLacak', 'tabCatatan'], acts: ['nota.buat', 'riwayat.cetak', 'piutang.kelola'], home: 'tabNota' },
   gudang: { label: 'Gudang', tabs: ['tabRiwayat'], acts: [], home: 'tabRiwayat' }
 };
 /* fungsi aplikasi lama yang dijaga: nama fungsi -> izin yang dibutuhkan */
@@ -12940,7 +13185,7 @@ html[data-theme="putih"] #tabelRiwayat .rw-kurang, html[data-theme="putih"] .rw-
     });
   }
   function ascii(s) {
-    return String(s).replace(/[•·●]/g, '*').replace(/[–—]/g, '-').replace(/×/g, 'x').replace(/²/g, '2').replace(/³/g, '3').replace(/[^\x20-\x7e]/g, '');
+    return String(s).replace(/[↑⬆]/g, '^').replace(/[↓⬇]/g, 'v').replace(/[←⬅]/g, '<--').replace(/[→➡]/g, '-->').replace(/[•·●]/g, '*').replace(/[–—]/g, '-').replace(/×/g, 'x').replace(/²/g, '2').replace(/³/g, '3').replace(/[^\x20-\x7e]/g, '');
   }
   function rep(c, n) { return new Array(n + 1).join(c); }
   function wrap(t, w) {
@@ -12979,15 +13224,16 @@ html[data-theme="putih"] #tabelRiwayat .rw-kurang, html[data-theme="putih"] .rw-
     return out;
   }
   function escpos(items) {
-    var b = [0x1B, 0x40], al = 0, bo = 0, f, nf = feedBaris();
+    var b = [0x1B, 0x40], al = 0, bo = 0, sz = 0, f, nf = feedBaris();
     items.forEach(function (it) {
       if (it.raw) { for (var q = 0; q < it.raw.length; q++) b.push(it.raw[q]); return; }
-      var a = it.c ? 1 : 0, bb = it.b ? 1 : 0;
+      var a = it.c ? 1 : 0, bb = it.b ? 1 : 0, s2 = it.big ? 1 : 0;
+      if (s2 !== sz) { b.push(0x1D, 0x21, s2 ? 0x11 : 0x00); sz = s2; }
       if (a !== al) { b.push(0x1B, 0x61, a); al = a; }
       if (bb !== bo) { b.push(0x1B, 0x45, bb); bo = bb; }
       var t = ascii(it.t); for (var i = 0; i < t.length; i++) b.push(t.charCodeAt(i)); b.push(0x0A);
     });
-    b.push(0x1B, 0x61, 0, 0x1B, 0x45, 0);
+    b.push(0x1B, 0x61, 0, 0x1B, 0x45, 0, 0x1D, 0x21, 0x00);
     for (f = 0; f < nf; f++) b.push(0x0A);       /* jarak kosong di bawah nota (bisa diatur di Pengaturan) */
     b.push(0x1D, 0x56, 0x42, 0x00);
     return new Uint8Array(b);
@@ -13014,6 +13260,98 @@ html[data-theme="putih"] #tabelRiwayat .rw-kurang, html[data-theme="putih"] .rw-
     }
     return origPrint.apply(window, arguments);
   };
+  window.btKolom = kolom;
+  /* ---- Panah (atas/bawah/kiri/kanan) dicetak sebagai gambar bitmap supaya bentuknya bagus ---- */
+  function cleanCt(t) {
+    return String(t).replace(/[↑⬆]/g, '\x01').replace(/[↓⬇]/g, '\x02').replace(/[←⬅]/g, '\x03').replace(/[→➡]/g, '\x04')
+      .replace(/[•·●]/g, '*').replace(/[–—]/g, '-').replace(/×/g, 'x').replace(/²/g, '2').replace(/³/g, '3').replace(/[^\x20-\x7e\x01-\x04]/g, '');
+  }
+  function wlen(t) { var n = 0, i; for (i = 0; i < t.length; i++) n += t.charCodeAt(i) < 5 ? 2 : 1; return n; }
+  function wrapCt(t, w) {
+    var out = [], cur = '', cl = 0;
+    String(t).replace(/\s+/g, ' ').trim().split(' ').forEach(function (k) {
+      if (!k) return;
+      var kl = wlen(k), i, cw;
+      if (kl > w) {
+        if (cur) { out.push(cur); cur = ''; cl = 0; }
+        for (i = 0; i < k.length; i++) { cw = k.charCodeAt(i) < 5 ? 2 : 1; if (cl + cw > w) { out.push(cur); cur = ''; cl = 0; } cur += k.charAt(i); cl += cw; }
+        return;
+      }
+      if (!cur) { cur = k; cl = kl; }
+      else if (cl + 1 + kl <= w) { cur += ' ' + k; cl += 1 + kl; }
+      else { out.push(cur); cur = k; cl = kl; }
+    });
+    if (cur) out.push(cur); return out;
+  }
+  function canvasBytes(c) {
+    var g = c.getContext('2d'), full = c.width, lh = c.height, px = g.getImageData(0, 0, full, lh).data, bpr = full / 8, out = [], y0, y, xb, k, h, by, i;
+    for (y0 = 0; y0 < lh; y0 += 64) {
+      h = Math.min(64, lh - y0);
+      out.push(0x1D, 0x76, 0x30, 0x00, bpr & 255, bpr >> 8, h & 255, h >> 8);
+      for (y = y0; y < y0 + h; y++) for (xb = 0; xb < bpr; xb++) {
+        by = 0;
+        for (k = 0; k < 8; k++) { i = (y * full + xb * 8 + k) * 4; if ((px[i] * 299 + px[i + 1] * 587 + px[i + 2] * 114) / 1000 < 160) by |= 0x80 >> k; }
+        out.push(by);
+      }
+    }
+    return out;
+  }
+  function panahGambar(g, jenis, x, y, w, h) {
+    var t, hh, hw, cx = x + w / 2, cy = y + h / 2;
+    g.beginPath();
+    if (jenis < 3) {
+      t = Math.max(4, Math.round(w * 0.3)); hh = Math.min(Math.round(w * 0.95), Math.round(h * 0.5));
+      if (jenis === 1) { g.moveTo(cx, y + 1); g.lineTo(x + 1, y + hh); g.lineTo(x + w - 1, y + hh); g.closePath(); g.fill(); g.fillRect(cx - t / 2, y + hh - 1, t, h - hh); }
+      else { g.moveTo(cx, y + h - 1); g.lineTo(x + 1, y + h - hh); g.lineTo(x + w - 1, y + h - hh); g.closePath(); g.fill(); g.fillRect(cx - t / 2, y, t, h - hh + 1); }
+    } else {
+      t = Math.max(4, Math.round(h * 0.3)); hw = Math.min(Math.round(h * 0.8), Math.round(w * 0.55));
+      if (jenis === 3) { g.moveTo(x + 1, cy); g.lineTo(x + hw, y + 2); g.lineTo(x + hw, y + h - 2); g.closePath(); g.fill(); g.fillRect(x + hw - 1, cy - t / 2, w - hw, t); }
+      else { g.moveTo(x + w - 1, cy); g.lineTo(x + w - hw, y + 2); g.lineTo(x + w - hw, y + h - 2); g.closePath(); g.fill(); g.fillRect(x, cy - t / 2, w - hw + 1, t); }
+    }
+  }
+  function barisRaster(x, o) {
+    try {
+      var cols = kolom(), full = cols === 48 ? 576 : 384, sc = o.besar ? 2 : 1, cw = (full / cols) * sc, ch = 24 * sc, i, code, px;
+      var tall = /[\x01\x02]/.test(x), H = tall ? ch * 2 : ch, W = wlen(x) * cw, ox = o.tengah ? Math.max(0, Math.floor((full - W) / 2)) : 0;
+      var c = document.createElement('canvas'); c.width = full; c.height = H;
+      var g = c.getContext('2d'); g.fillStyle = '#fff'; g.fillRect(0, 0, full, H); g.fillStyle = '#000';
+      g.font = (o.tebal ? 'bold ' : '') + Math.round(ch * 0.9) + 'px "Courier New", Courier, monospace'; g.textAlign = 'center'; g.textBaseline = 'middle';
+      px = ox;
+      for (i = 0; i < x.length; i++) {
+        code = x.charCodeAt(i);
+        if (code < 5) { if (code < 3) panahGambar(g, code, px + 2, 0, cw * 2 - 4, H); else panahGambar(g, code, px + 2, (H - ch) / 2, cw * 2 - 4, ch); px += cw * 2; }
+        else { g.fillText(x.charAt(i), px + cw / 2, H / 2); px += cw; }
+      }
+      return canvasBytes(c);
+    } catch (e) { return null; }
+  }
+  function itemsCatatan(o) {
+    var w = kolom(), wb = o.besar ? Math.floor(w / 2) : w, L = [], lg = o.logo && logoOn() ? logoBytes() : null;
+    if (lg) L.push({ raw: lg });
+    else if (o.logo) { var nm = $('namaToko') ? $('namaToko').value : ''; if (nm) wrap(nm, w).forEach(function (x) { L.push({ t: x, c: true, b: true }); }); }
+    if (o.judul) { wrap(o.judul, wb).forEach(function (x) { L.push({ t: x, c: true, b: true, big: o.besar }); }); L.push({ t: rep('-', w) }); }
+    String(o.isi || '').split(/\r?\n/).forEach(function (ln) {
+      var ws = wrapCt(cleanCt(ln), wb); if (!ws.length) ws = [''];
+      ws.forEach(function (x) {
+        if (/[\x01-\x04]/.test(x)) { var r = barisRaster(x, o); if (r) { L.push({ raw: r }); return; } }
+        L.push({ t: x.replace(/\x01/g, '^').replace(/\x02/g, 'v').replace(/\x03/g, '<--').replace(/\x04/g, '-->'), c: o.tengah, b: o.tebal, big: o.besar });
+      });
+    });
+    if (o.tgl) { L.push({ t: rep('-', w) }); L.push({ t: new Date().toLocaleString('id-ID'), c: true }); }
+    return L;
+  }
+  window.btCetakCatatan = function (o, fallback) {
+    if (!btAktif()) return false;
+    var one = null; try { one = escpos(itemsCatatan(o)); } catch (e) {}
+    if (!one) return false;
+    var n = Math.max(1, Math.min(10, o.jml || 1)), all = new Uint8Array(one.length * n);
+    for (var i = 0; i < n; i++) all.set(one, i * one.length);
+    btKirim(all).then(function () { say('✓ Catatan dikirim ke printer'); }).catch(function (e) {
+      if (e && e.batal) { say('Pemilihan printer dibatalkan'); return; }
+      say('Printer Bluetooth gagal: ' + btErr(e) + ' Memakai cetak biasa.'); if (fallback) fallback();
+    });
+    return true;
+  };
   function injectBt() {
     var t = $('tabPengaturan'); if (!t) return false;
     if ($('btCard')) return true;
@@ -13039,7 +13377,14 @@ html[data-theme="putih"] #tabelRiwayat .rw-kurang, html[data-theme="putih"] .rw-
         .catch(function (e) { if (!(e && e.batal)) say('Gagal terhubung: ' + btErr(e)); });
     });
     $('btTes').addEventListener('click', function () {
-      var w = kolom(), lg = logoOn() ? logoBytes() : null, L = (lg ? [{ raw: lg }] : []).concat([{ t: 'TES PRINTER', c: true, b: true }, { t: rep('-', w) }]).concat(rowLines('Barang contoh', '10.000', w), [{ t: rep('=', w) }, { t: 'Lebar ' + w + ' karakter', c: true }, { t: 'Printer siap dipakai', c: true }]);
+      var w = kolom(), lg = logoOn() ? logoBytes() : null;
+      var g = function (id) { var e = $(id); return e ? String(e.value || '').trim() : ''; };
+      var alamat = g('alamatToko'), telp = g('telpToko'), web = g('settingWebsite');
+      var atas = wrap(alamat, w).map(function (x) { return { t: x, c: true, b: true }; });
+      if (telp) atas.push({ t: 'Telp/WA: ' + ascii(telp), c: true, b: true });
+      if (!atas.length) atas.push({ t: 'TES PRINTER', c: true, b: true });
+      var tengah = wrap(web, w).map(function (x) { return { t: x, c: true }; });
+      var L = (lg ? [{ raw: lg }] : []).concat(atas, [{ t: rep('-', w) }], tengah, [{ t: rep('=', w) }, { t: 'Lebar ' + w + ' karakter', c: true }, { t: 'Printer siap dipakai', c: true }]);
       btKirim(escpos(L)).then(function () { say('✓ Tes cetak terkirim'); }).catch(function (e) { if (!(e && e.batal)) say('Gagal: ' + btErr(e)); });
     });
     $('btPutus').addEventListener('click', function () { try { if (BT.dev && BT.dev.gatt.connected) BT.dev.gatt.disconnect(); } catch (e) {} BT.ch = null; btStatus(); });
